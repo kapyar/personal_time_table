@@ -7,12 +7,14 @@ class Student(models.Model):
     first_name = models.CharField(max_length=96, unique=False, blank=True)
     last_name = models.CharField(max_length=96, unique=False, blank=True)
     email = models.EmailField(max_length=96, unique=False, blank=True)
-    year = models.IntegerField(default=1)
+    year = models.IntegerField(choices=(
+        (1,1),(2,2),(3,3),(4,4),(5,5),(6,6)
+    ))
     budget = models.BooleanField(default=True, help_text=("Show is student paid for courses. Allows us to calculate price for future"))
 
 
     def __str__(self):
-        return "Student [ {}, {} ]".format(self.name, self.email)
+        return "Student [ {}, {} ]".format(self.last_name, self.email)
 
 
 class Subject(models.Model):
@@ -41,6 +43,7 @@ class Subject(models.Model):
 
 
 class Class(models.Model):
+    name = models.CharField(max_length=96, unique=True,blank=True)
     stud_id = models.ForeignKey(Student)
     subj_id = models.ForeignKey(Subject)
     enrolment_date = models.TimeField(auto_now=True)

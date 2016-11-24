@@ -1,4 +1,4 @@
-
+from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.decorators import api_view
 
@@ -11,18 +11,18 @@ from .serializers import StudentSerializer,SubjectSerializer,ClassSerializer
 
 
 
-@api_view(['GET'])
-def index(request, format=None):
-	print ("********")
-	return Response({
-		'students': reverse('students-list', request=request, format=format),
-		'subjects': reverse('subjects-list', request=request, format=format),
-		'classes': reverse('classes-list', request=request, format=format),
-	})
+# @api_view(['GET'])
+# def index(request, format=None):
+# 	print ("********")
+# 	return Response({
+# 		'students': reverse('students-list', request=request, format=format),
+# 		'subjects': reverse('subjects-list', request=request, format=format),
+# 		'classes': reverse('classes-list', request=request, format=format),
+# 	})
 
-# def index(request):
-# 	return Response("You are in the raw_data index. In this index you could work with each entity"
-# 						"CRUD operations")
+def index(request):
+	return HttpResponse("You are in the raw_data index. In this index you could work with each entity"
+						"CRUD operations")
 
 
 class StudentList(generics.ListCreateAPIView):

@@ -18,11 +18,18 @@ from django.contrib import admin
 
 from rest_service.views import hellow_world
 from django.conf.urls import include
+from rest_framework.schemas import get_schema_view
+
+
+schema_view = get_schema_view(title='Pastebin API')
 
 urlpatterns = [
+
+	url('^schema/$', schema_view),
     url(r'^admin/', admin.site.urls),
     url(r'^hello/', hellow_world),
     url(r'^$', hellow_world),
     url(r'^raw_data/', include('raw_data.urls')),
+    url(r'^services/', include('services.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
