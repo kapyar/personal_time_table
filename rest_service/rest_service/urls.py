@@ -17,14 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from rest_service.views import hellow_world
-
-
 from django.conf.urls import include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hello/', hellow_world),
     url(r'^$', hellow_world),
-    url(r'^polls/', include('polls.urls')),
+    url(r'^raw_data/', include('raw_data.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
